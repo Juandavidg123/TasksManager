@@ -1,0 +1,10 @@
+# Databases
+db.sqlite3
+
+# Virtual env
+venv
+env
+
+# Cache
+__pycache__
+

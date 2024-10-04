@@ -1,0 +1,25 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<main class="col-md-4 offset-md-4 mt-5">
+    <div class="card card-body" style="border: 1px solid black;">
+        <h2>Delete task</h2>
+        <p>Are you sure you want to delete the task "{{ task.title }}"?</p>
+
+        <div class="btn-group" role="group">
+            <form action="{% url 'deletetask' task.id %}" method="post" class="d-inline container">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-danger">
+                    Delete
+                </button>
+            </form>
+            <form action="{% url 'detail' task.id %}" method="post" class="d-inline container">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-primary">
+                    Cancel
+                </button>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}

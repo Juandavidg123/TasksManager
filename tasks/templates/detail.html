@@ -1,0 +1,26 @@
+{%extends 'home.html' %}
+
+{% block content %}
+<main class="col-md-4 offset-md-4 mt-5">
+    <div class="card card-body" style="border: 1px solid black;">
+        <h1>{{task.title}} detail</h1>
+        <p>Description: {{task.description}}</p>
+        <p>Created date: {{task.created_date}}</p>
+        <p>User: {{task.user.username}}</p>
+        <p>Completed date: {{task.date_completed}}</p>
+        <p>Important: {{task.important}}</p>
+
+        <div class="btn-group" role="group">
+            <a href="{% url 'update' task.id %}" class="btn btn-outline-primary">
+                Update and complete task
+            </a>
+            <a href="{% url 'deleted' task.id %}" class="btn btn-outline-primary">
+                Delete task
+            </a>
+            <a href="{% url 'tasks' %}" class="btn btn-outline-primary">
+                Back to tasks
+            </a>
+        </div>
+    </div>
+</main>
+{% endblock %}

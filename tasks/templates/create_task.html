@@ -1,0 +1,16 @@
+{% extends 'home.html' %}
+{% block content %}
+<main class="mt-1 py-5">
+    <div class="card card-body container" style="max-width: 30rem; border: 1px solid black;">
+        <h1>Create task</h1>
+        {{ error }}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary">
+                Create task
+            </button>
+        </form>
+    </div>
+</main>
+{% endblock %}

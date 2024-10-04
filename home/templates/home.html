@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks Manager</title>
+    <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/zondicons/20/book-reference-512.png" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css" rel="stylesheet">
+</head>
+<body style="background-color: rgb(247, 246, 255);">
+    <nav class="navbar bg-primary navbar-expand-lg" data-bs-theme="dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}"><i class="bi bi-house"></i></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto">
+                    {% if not user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <li><a class="nav-link" href="{% url 'signin' %}">Sign In</a></li>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <li><a class="nav-link" href="{% url 'signout' %}">Logout</a></li>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Tasks actions
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'tasks' %}">Tasks</a></li>
+                            <li><a class="dropdown-item" href="{% url 'create_task' %}">Create task</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    {% block content %}
+    <main class="py-3">
+        <div class="card mb-3 container" style="max-width: 30rem; border: 1px solid #000000;">
+            <div class="card-header" style="background-color: white;">Tasks manager</div>
+            <div class="card-body">
+                <h5 class="card-title">Web application</h5>
+                <p class="card-text">A web application developed in Django that allows users to manage tasks efficiently. With a robust authentication system, users can register and log in securely. Once authenticated, users can create, edit and delete tasks. The intuitive interface displays pending and completed tasks, facilitating personal organization.</p>
+            </div>
+        </div>
+        <div class="card mb-3 container" style="max-width: 20rem; border: 1px solid #000000;">
+            <div class="card-header" style="background-color: white;">A solution</div>
+            <div class="card-body">
+                <h5 class="card-title">Productivity</h5>
+                <p class="card-text">Django provides a secure and scalable framework, ensuring that user data is protected and that the application can grow over time. This solution is ideal for improving productivity and time management.</p>
+            </div>
+        </div>
+    </main>
+    {% endblock %}
+
+    <footer class="bg-primary text-white text-center fixed-bottom">
+        <div class="container">
+            <p>2024 Juan David Godoy</p>
+            <a href="https://github.com/juandavidg123" target="_blank" style="color: black;">
+                <i class="bi bi-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/juan-david-godoy-valencia-46458b314/" target="_blank" style="color: black;">
+                <i class="bi bi-linkedin"></i>
+            </a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

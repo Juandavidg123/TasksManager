@@ -1,0 +1,84 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<main class="container py-5">
+    <h1>Tasks pending</h1>
+    <div class="row">
+
+        <div class="col-md-6">
+            <h2>Important Tasks</h2>
+            <div class="container">
+                {% if not important %}
+                <p>No important tasks pending yet</p>
+                {% endif %}
+            </div>
+            <ul class="list-group py-1">
+                {% for task in important %}
+                <a 
+                href="{% url 'detail' task.id %}" 
+                class="card mb-3 link-offset-2 link-underline link-underline-opacity-0" 
+                style="background-color: rgb(211, 239, 255)">
+                    <div class="container py-1">
+                        <strong>
+                            <h2 style="color: green;">{{task.title}}</h2>
+                        </strong>
+                        <p>Description: {{task.description}}</p>
+                        <p style="color: gray;">Press for details and edit</p>
+                    </div>
+                </a>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-md-6">
+            <h2>Regular Tasks</h2>
+            <div class="container">
+                {% if not notimportant %}
+                <p>No tasks pending yet</p>
+                {% endif %}
+            </div>
+            <ul class="list-group py-1">
+                {% for task in notimportant %}
+                <a 
+                href="{% url 'detail' task.id %}" 
+                class="card mb-3 link-offset-2 link-underline link-underline-opacity-0" 
+                style="background-color: rgb(211, 239, 255)">
+                    <div class="container py-1">
+                        <h2>{{task.title}}</h2>
+                        <p>Description: {{task.description}}</p>
+                        <p style="color: gray;">Press for details and edit</p>
+                    </div>
+                </a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <h1>Tasks completed</h1>
+    <div class="container">
+        {% if not taskscompleted %}
+        <p>No tasks completed yet</p>
+        {% endif %}
+    </div>
+    <ul class="list-group py-1">
+        {% for task in taskscompleted %}
+        <a href="{% url 'detail' task.id %}"
+            class="card mb-3 link-offset-2 link-underline link-underline-opacity-0"
+            style="background-color: rgb(211, 239, 255)">
+            <div class="container">
+                {% if task.important %}
+                <strong>
+                    <h2 style="color: green;">{{task.title}}</h2>
+                </strong>
+                {% else %}
+                <h2>{{task.title}}</h2>
+                {% endif %}
+                <p>Description: {{task.description}}</p>
+                <p>Completed date: {{task.date_completed}}</p>
+                <p style="color: gray;">Press for details and edit</p>
+            </div>
+        </a>
+        {% endfor %}
+    </ul>
+</main>
+{% endblock %}

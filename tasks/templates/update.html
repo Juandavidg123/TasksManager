@@ -1,0 +1,35 @@
+{% extends 'home.html' %}
+{% block content %}
+<main class="col-md-3 offset-md-3 mt-2">
+    <div class="card" style="width: 40rem; border: 1px solid black;">
+        <div class="card-body">
+            <h1>Update task</h1>
+            <form action="{% url 'update' task.id %}" method="post" class="d-inline">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="btn-group" role="group">
+                    <button type="submit" class="btn btn-outline-primary">
+                        Update task
+                    </button>
+                </div>
+            </form>
+            <form action="{% url 'completed' task.id %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <div class="btn-group" role="group">
+                    <button type="submit" class="btn btn-outline-success">
+                        Complete task
+                    </button>
+                </div>
+            </form>
+            <form action="{% url 'detail' task.id %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <div class="btn-group" role="group">
+                    <button type="submit" class="btn btn-outline-primary">
+                        Back to detail task
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}
